@@ -1,3 +1,5 @@
 // Home Page
 
 export const SAVE_OFFER_BANNERS = 'SAVE_OFFER_BANNERS'
+
+export const SAVE_CATEGORIES = 'SAVE_CATEGORIES'

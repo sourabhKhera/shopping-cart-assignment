@@ -38,6 +38,19 @@ module.exports = {
           },
           'sass-loader',
         ],
+        include: /\.m\.scss$/
+      },
+      {
+        test: /\.s?[ac]ss$/i,
+        use: [
+          // fallback to style-loader in development
+          process.env.NODE_ENV !== 'production'
+            ? 'style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+        exclude: /\.m\.scss$/
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff)$/,

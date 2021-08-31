@@ -1,0 +1,60 @@
+@import '~react-responsive-carousel/lib/styles/carousel.min.css';
+
+%common-props {
+  font-size: 10px;
+  margin: 0;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+}
+
+.carousel {
+  .control-dots {
+    .dot {
+      background-color: #383535;
+      box-shadow: none;
+      height: 6px;
+      width: 6px;
+    }
+
+    .selected {
+      background-color: #000;
+      opacity: 1;
+    }
+  }
+
+  .control-prev.control-arrow::before {
+    content: 'PREV';
+    @extend %common-props;
+  }
+
+  .control-next.control-arrow::before {
+    content: 'NEXT';
+    @extend %common-props;
+  }
+}
+
+.carousel.carousel-slider {
+  .control-arrow {
+    width: 35px;
+    background-color: black;
+    height: 30px;
+    opacity: 0.3;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    padding: 0;
+  }
+
+  .control-arrow:hover {
+    background: none;
+    opacity: 0.5;
+    background-color: black;
+  }
+}

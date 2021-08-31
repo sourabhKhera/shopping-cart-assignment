@@ -4,8 +4,9 @@
     position: fixed;
     bottom: 80px;
     width: 70%;
-    height: 13px;
-    background-image: linear-gradient(to bottom, white, #f1f1f1);
+    // height: 13px;
+    // background-image: linear-gradient(to bottom, white, #f1f1f1);
+    box-shadow: 0 110px 15px 50px #e8e8e8;
     left: 15%;
     right: 15%;
   }

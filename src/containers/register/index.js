@@ -3,7 +3,7 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import Button from '../../components/button'
 
-import classes from './style.scss'
+import classes from './style.m.scss'
 
 const Register = ({ config }) => {
   const renderInputs = config.formInputs.map((item, idx) => {

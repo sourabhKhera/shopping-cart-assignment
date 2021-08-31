@@ -1,0 +1,22 @@
+.main {
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 15px;
+
+  .main__div-elem1 {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .main__div-elem1::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    box-shadow: 0 0 5px 2px #a09e9e;
+    top: 10px;
+    bottom: 0;
+    left: 5%;
+    right: 5%;
+    border-radius: 100px / 10px;
+  }
+}

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "cross-env NODE_ENV=development npm run webpack && nodemon ./src/server",
+    "start:dev": "npm run clean && cross-env NODE_ENV=development npm run webpack && nodemon ./src/server",
     "webpack": "webpack --colors --display-error-details --config ./webpack.config.js",
-    "clean": "rd /s /q dist"
+    "clean": "rm -rf dist"
   },
   "author": "",
   "license": "MIT",
