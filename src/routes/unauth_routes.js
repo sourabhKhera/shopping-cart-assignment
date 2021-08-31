@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Register from '../containers/register'
+import HomePage from '../containers/home-page'
 
 import {
   registerConfig,
@@ -11,7 +12,7 @@ const unauthenticatedRoutes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Redirect to="/register" />
+        <HomePage />
       </Route>
       <Route path="/register">
         <Register config={registerConfig} />

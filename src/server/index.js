@@ -9,6 +9,7 @@ const path = require('path')
 
 // enable webpack hot module replacement and dev middlware
 app.use(webpackDevMiddleware(compiler, { stats: 'errors-only' }))
+app.use('/static', express.static('static'))
 app.use(express.static(path.resolve(__dirname, '../../dist')))
 routes(app)
 

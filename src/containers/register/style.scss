@@ -3,9 +3,9 @@
   .main__shadow-div {
     position: fixed;
     bottom: 80px;
-    height: 0.5px;
     width: 70%;
-    box-shadow: 0 -12px 17px 8px #e8e8e8;
+    height: 13px;
+    background-image: linear-gradient(to bottom, white, #f1f1f1);
     left: 15%;
     right: 15%;
   }
@@ -15,7 +15,8 @@
     justify-content: flex-end;
     .main__section-left__content {
       margin-top: 45px;
-      margin-right: 90px;
+      margin-right: 58px;
+      width: 51%;
       .main__section-left__content__heading {
         font-size: 18px;
         font-weight: bold;

@@ -1,52 +1,52 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const webpack = require('webpack')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
-console.log(`Running webpack in ${process.env.NODE_ENV}`);
+console.log(`Running webpack in ${process.env.NODE_ENV}`)
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.s?[ac]ss$/i,
         use: [
           // fallback to style-loader in development
-          process.env.NODE_ENV !== "production"
-            ? "style-loader"
+          process.env.NODE_ENV !== 'production'
+            ? 'style-loader'
             : MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: "[name]__[local]__[hash:base64:5]",
+                localIdentName: '[name]__[local]__[hash:base64:5]',
               },
             },
           },
-          "sass-loader",
+          'sass-loader',
         ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 1000,
-              name: "assets/img/[name].[ext]",
+              name: 'assets/img/[name].[ext]',
             },
           },
         ],
@@ -55,14 +55,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve("src", "index.html"),
+      template: path.resolve('src', 'index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -70,4 +70,4 @@ module.exports = {
     minimizer: [new UglifyJsPlugin(), new CssMinimizerPlugin()],
     minimize: true,
   },
-};
+}
