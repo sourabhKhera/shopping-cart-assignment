@@ -1,22 +1,52 @@
+%shadow-props {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 5px 2px #a09e9e;
+  top: 10px;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  border-radius: 100px / 10px;
+}
 .main {
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 15px;
 
-  .main__div-elem1 {
+  .main__section-elem1 {
     margin-bottom: 20px;
     position: relative;
   }
 
-  .main__div-elem1::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    box-shadow: 0 0 5px 2px #a09e9e;
-    top: 10px;
-    bottom: 0;
-    left: 5%;
-    right: 5%;
-    border-radius: 100px / 10px;
+  .main__section-elem1::after {
+    @extend %shadow-props;
+  }
+  .main__categories-section__div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    position: relative;
+    .main__categories-section__div__section-left {
+      flex: 1;
+    }
+    .main__categories-section__div__section-right {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      justify-content: center;
+      .main__categories-section__div__section-right__div-elem1 {
+        font-weight: bold;
+      }
+      .main__categories-section__div__section-right__div-elem2 {
+        font-size: 15px;
+      }
+    }
+  }
+  .main__categories-section__div::after {
+    @extend %shadow-props;
   }
 }

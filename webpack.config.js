@@ -14,6 +14,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  resolve: {
+    fallback: { path: require.resolve('path') },
+  },
   module: {
     rules: [
       {
@@ -38,7 +41,7 @@ module.exports = {
           },
           'sass-loader',
         ],
-        include: /\.m\.scss$/
+        include: /\.m\.scss$/,
       },
       {
         test: /\.s?[ac]ss$/i,
@@ -50,7 +53,7 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ],
-        exclude: /\.m\.scss$/
+        exclude: /\.m\.scss$/,
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff)$/,
