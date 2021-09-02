@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Carousel from '../../components/carausel'
+import Carousel from '../../../components/carausel'
 import {
   getOfferBanners,
   getCategories,
-} from '../../actions/async-actions/home-async'
-import Button from '../../components/button'
+} from '../../../actions/async-actions/home-async'
+import Button from '../../../components/button'
 
 import classes from './style.m.scss'
 
@@ -22,7 +22,14 @@ const HomePage = () => {
       <section
         className={classes['main__categories-section__div__section-left']}
       >
-        <img src={data.imageUrl} alt={data.name} height="200px" />
+        <img
+          src={data.imageUrl}
+          alt={data.name}
+          height="200px"
+          className={
+            classes['main__categories-section__div__section-left__img']
+          }
+        />
       </section>
     )
   }
@@ -76,7 +83,9 @@ const HomePage = () => {
       <section className={classes['main__section-elem1']}>
         <Carousel offers={banners} />
       </section>
-      <section style={{ marginBottom: '20px' }}>{renderCategories}</section>
+      <section className={classes['main__section-elem2']}>
+        {renderCategories}
+      </section>
     </main>
   )
 }

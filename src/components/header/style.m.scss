@@ -76,3 +76,41 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    .header__sub-div {
+      margin-left: 0;
+      margin-right: 0;
+      .header__section-left {
+        gap: 60px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    .header__section-left {
+      img {
+        height: 35px;
+      }
+      .header__nav-left {
+        display: none;
+      }
+    }
+    .header__section-right {
+      .header__section-right__content {
+        .header__nav-right {
+          display: none;
+        }
+        .header__cart-items-count {
+          height: 100%;
+          width: 100px;
+          bottom: 5px;
+          right: -5px;
+        }
+      }
+    }
+  }
+}

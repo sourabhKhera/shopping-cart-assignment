@@ -17,7 +17,7 @@ const Header = () => {
               </NavLink>
             </span>
             <span className={classes['header__nav-left__span']}>
-              <NavLink activeClassName={classes['active']} to="/Products">
+              <NavLink activeClassName={classes['active']} to="/products">
                 Products
               </NavLink>
             </span>

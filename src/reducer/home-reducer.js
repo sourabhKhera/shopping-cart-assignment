@@ -13,9 +13,12 @@ const saveOfferBanners = (state, { banners }) => {
 }
 
 const saveCategories = (state, { categories }) => {
+  const sortedCategories = categories?.length
+    ? categories.sort((a, b) => a.order - b.order)
+    : []
   return {
     ...state,
-    categories: [...categories],
+    categories: [...sortedCategories],
   }
 }
 
@@ -24,7 +27,7 @@ const homeReducer = (state = initialState, action) => {
     case SAVE_OFFER_BANNERS:
       return saveOfferBanners(state, action)
     case SAVE_CATEGORIES:
-      return saveCategories(state, action)  
+      return saveCategories(state, action)
     default:
       return state
   }

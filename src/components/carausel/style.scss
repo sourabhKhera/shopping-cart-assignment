@@ -16,6 +16,7 @@
 
 .carousel {
   .control-dots {
+    bottom: 6px;
     .dot {
       background-color: #383535;
       box-shadow: none;
@@ -56,5 +57,37 @@
     background: none;
     opacity: 0.5;
     background-color: black;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .carousel {
+    .control-dots {
+      bottom: 15px;
+    }
+  }
+  .banner-image {
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel {
+    .control-next,
+    .control-prev {
+      display: none;
+    }
+  }
+  .carousel.carousel-slider {
+    overflow: visible;
+    .control-dots {
+      bottom: -37px;
+      .dot {
+        margin-right: 12px;
+      }
+    }
+  }
+  .banner-image {
+    height: 120px;
   }
 }

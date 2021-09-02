@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
 import Register from '../containers/register'
-import HomePage from '../containers/home-page'
+import HomePage from '../containers/pages/home'
+import ProductsPage from '../containers/pages/products'
 
 import {
   registerConfig,
@@ -19,6 +20,9 @@ const unauthenticatedRoutes = () => {
       </Route>
       <Route path="/login">
         <Register config={loginConfig} />
+      </Route>
+      <Route path="/products">
+        <ProductsPage />
       </Route>
     </Switch>
   )
