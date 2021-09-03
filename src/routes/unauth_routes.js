@@ -1,8 +1,11 @@
-import React, { Fragment } from 'react'
-import { Route, Redirect, Switch } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
 import Register from '../containers/register'
 import HomePage from '../containers/pages/home'
 import ProductsPage from '../containers/pages/products'
+
+import { getCategories } from '../actions/async-actions/home-async'
 
 import {
   registerConfig,
@@ -10,6 +13,10 @@ import {
 } from '../components_config/login_register'
 
 const unauthenticatedRoutes = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [])
   return (
     <Switch>
       <Route exact path="/">

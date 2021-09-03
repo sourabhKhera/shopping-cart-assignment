@@ -2,7 +2,7 @@ import axios from 'axios'
 import { saveProducts } from '../products-action'
 
 export const getProducts = () => async (dispatch) => {
-  const URL = 'http://localhost:3000/products'
+  const URL = 'http://localhost:3000/productList'
   try {
     const response = await axios(URL, {
       method: 'get',

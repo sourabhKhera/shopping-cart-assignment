@@ -1,16 +1,70 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Carousel from '../../../components/carausel'
+import Button from '../../../components/button'
+
 import { getProducts } from '../../../actions/async-actions/products-async'
+
+import classes from './style.m.scss'
 
 const ProductsPage = () => {
   const dispatch = useDispatch()
-  //   const categories = useSelector((state) => state.homeReducer.categories)
+  const categories = useSelector((state) => state.homeReducer.categories)
+  const products = useSelector((state) => state.productReducer.products)
   useEffect(() => {
     dispatch(getProducts())
   }, [])
-
-  return <main>Hello products!</main>
+  const renderCategories = categories?.length
+    ? categories.map((item, idx) => {
+        return (
+          <div
+            className={classes['main__section-left__product-category']}
+            key={idx}
+          >
+            {item.name}
+          </div>
+        )
+      })
+    : []
+  const renderProducts = products?.length
+    ? products.map((item, idx) => {
+        return (
+          <div className={classes['main__section-right__div-elem1']}>
+            <div className={classes['main__section-right__div-elem2']}>
+              {item.name}
+            </div>
+            <img
+              src={item.imageURL}
+              alt={item.name}
+              className={classes['main__section-right__img']}
+            />
+            <div className={classes['main__section-right__div-elem3']}>
+              <div className={classes['main__section-right__div-elem4']}>
+                {item.description}
+              </div>
+            </div>
+            <div className={classes['main__section-right__div-elem5']}>
+              <div className={classes['main__section-right__div-elem6']}>
+                MRP Rs.{item.price}
+              </div>
+              <Button
+                btnText="Buy Now"
+                buttonStyle={{ padding: '10px 25px' }}
+              />
+            </div>
+          </div>
+        )
+      })
+    : []
+  return (
+    <main className={classes['main']}>
+      <section className={classes['main__section-left']}>
+        {renderCategories}
+      </section>
+      <section className={classes['main__section-right']}>
+        {renderProducts}
+      </section>
+    </main>
+  )
 }
 
 export default ProductsPage

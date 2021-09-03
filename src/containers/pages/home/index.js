@@ -1,10 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Carousel from '../../../components/carausel'
-import {
-  getOfferBanners,
-  getCategories,
-} from '../../../actions/async-actions/home-async'
+import { getOfferBanners } from '../../../actions/async-actions/home-async'
 import Button from '../../../components/button'
 
 import classes from './style.m.scss'
@@ -15,7 +12,6 @@ const HomePage = () => {
   const categories = useSelector((state) => state.homeReducer.categories)
   useEffect(() => {
     dispatch(getOfferBanners())
-    dispatch(getCategories())
   }, [])
   const renderImageSection = (data) => {
     return (
