@@ -1,0 +1,30 @@
+@import '~react-accessible-accordion/dist/fancy-example.css';
+
+.accordion {
+  .accordion__item {
+    .accordion__heading {
+      position: relative;
+      .accordion__button {
+        background-color: #d00256;
+        color: #fff;
+        padding: 13px 18px;
+        width: auto;
+      }
+      .accordion__button::before {
+        content: none;
+      }
+      .accordion__button::after {
+        // display: inline-block;
+        content: '';
+        height: 10px;
+        width: 10px;
+        margin-right: 18px;
+        border-bottom: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+        transform: rotate(45deg);
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}
