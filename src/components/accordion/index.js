@@ -8,15 +8,19 @@ import {
 } from 'react-accessible-accordion'
 
 import './style.scss'
-const AccordionComp = ({ data }) => {
+const AccordionComp = ({ data, renderProducts, setCategoryId, categoryId }) => {
   return (
-    <Accordion allowZeroExpanded>
+    <Accordion
+      allowZeroExpanded
+      // preExpanded={[categoryId]}
+      onChange={(uuid) => setCategoryId(uuid[0])}
+    >
       {data.map((item, idx) => (
-        <AccordionItem key={idx}>
+        <AccordionItem key={item.id} uuid={item.id}>
           <AccordionItemHeading>
             <AccordionItemButton>{item.name}</AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel>{item.name}</AccordionItemPanel>
+          <AccordionItemPanel>{renderProducts}</AccordionItemPanel>
         </AccordionItem>
       ))}
     </Accordion>

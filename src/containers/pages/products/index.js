@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../../components/button'
 import AccordionComp from '../../../components/accordion'
@@ -7,12 +7,16 @@ import { getProducts } from '../../../actions/async-actions/products-async'
 import classes from './style.m.scss'
 
 const ProductsPage = () => {
-  const dispatch = useDispatch()
   const categories = useSelector((state) => state.homeReducer.categories)
   const products = useSelector((state) => state.productReducer.products)
+  const [categoryId, setCategoryId] = useState('')
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getProducts())
   }, [])
+  useEffect(() => {
+    setCategoryId(categories?.length && categories[0].id)
+  }, [categories])
 
   const mediaTabletQuery = window.matchMedia(
     '(min-width: 481px) and (max-width: 768px)'
@@ -21,7 +25,7 @@ const ProductsPage = () => {
 
   const renderProductsInfo = (item) => {
     return mediaTabletQuery.matches ? (
-      <Fragment>
+      <>
         <div className={classes['main__section-right__product-info']}>
           <div
             className={classes['main__section-right__product-info__div-elem1']}
@@ -42,9 +46,9 @@ const ProductsPage = () => {
             buttonStyle={{ width: '100%', marginTop: '10px' }}
           />
         </div>
-      </Fragment>
+      </>
     ) : mediaMobileQuery.matches ? (
-      <Fragment>
+      <>
         <div className={classes['main__section-right__product-info']}>
           <div
             className={classes['main__section-right__product-info__div-elem1']}
@@ -54,11 +58,7 @@ const ProductsPage = () => {
               alt={item.name}
               className={classes['main__section-right__img']}
             />
-            <div
-            // className={
-            //   classes['main__section-right__product-info__div-elem2']
-            // }
-            >
+            <div>
               <div className={classes['main__section-right__div-elem3']}>
                 <div className={classes['main__section-right__div-elem4']}>
                   {item.description}
@@ -68,16 +68,17 @@ const ProductsPage = () => {
                 btnText={`Buy Now @ Rs.${item.price}`}
                 buttonStyle={{
                   width: '100%',
-                  marginTop: '25px',
-                  padding: '8px',
+                  marginTop: '35px',
+                  padding: '11px',
+                  fontSize: '11px',
                 }}
               />
             </div>
           </div>
         </div>
-      </Fragment>
+      </>
     ) : (
-      <Fragment>
+      <>
         <img
           src={item.imageURL}
           alt={item.name}
@@ -94,7 +95,7 @@ const ProductsPage = () => {
           </div>
           <Button btnText="Buy Now" buttonStyle={{ padding: '10px 25px' }} />
         </div>
-      </Fragment>
+      </>
     )
   }
   const renderCategories = categories?.length
@@ -103,35 +104,48 @@ const ProductsPage = () => {
           <div
             className={classes['main__section-left__product-category']}
             key={idx}
+            onClick={() => setCategoryId(item.id)}
           >
             {item.name}
           </div>
         )
       })
     : []
-  const renderProducts = products?.length
-    ? products.map((item, idx) => {
-        return (
-          <div className={classes['main__section-right__div-elem1']} key={idx}>
-            <div className={classes['main__section-right__div-elem2']}>
-              {item.name}
-            </div>
-            {renderProductsInfo(item)}
-          </div>
-        )
-      })
-    : []
+  const renderProducts = (
+    <section className={classes['main__section-right']}>
+      {products?.length
+        ? products
+            .filter((item) => item.category === categoryId)
+            .map((item, idx) => {
+              return (
+                <div
+                  className={classes['main__section-right__div-elem1']}
+                  key={idx}
+                >
+                  <div className={classes['main__section-right__div-elem2']}>
+                    {item.name}
+                  </div>
+                  {renderProductsInfo(item)}
+                </div>
+              )
+            })
+        : []}
+    </section>
+  )
   const renderProductSection = mediaMobileQuery.matches ? (
-    <AccordionComp data={categories} />
+    <AccordionComp
+      data={categories}
+      renderProducts={renderProducts}
+      setCategoryId={setCategoryId}
+      categoryId={categoryId}
+    />
   ) : (
-    <Fragment>
+    <>
       <section className={classes['main__section-left']}>
         {renderCategories}
       </section>
-      <section className={classes['main__section-right']}>
-        {renderProducts}
-      </section>
-    </Fragment>
+      {renderProducts}
+    </>
   )
   return <main className={classes['main']}>{renderProductSection}</main>
 }

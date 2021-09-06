@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Carousel from '../../../components/carausel'
 import { getOfferBanners } from '../../../actions/async-actions/home-async'
@@ -60,15 +60,15 @@ const HomePage = () => {
         return (
           <div className={classes['main__categories-section__div']} key={idx}>
             {(idx + 1) % 2 === 0 ? (
-              <Fragment>
+              <>
                 {renderDescriptionSection(item)}
                 {renderImageSection(item)}
-              </Fragment>
+              </>
             ) : (
-              <Fragment>
+              <>
                 {renderImageSection(item)}
                 {renderDescriptionSection(item)}
-              </Fragment>
+              </>
             )}
           </div>
         )

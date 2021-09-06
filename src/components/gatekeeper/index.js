@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import AuthenticatedRoutes from '../../routes/auth_routes'
 import UnAuthenticatedRoutes from '../../routes/unauth_routes'
 
