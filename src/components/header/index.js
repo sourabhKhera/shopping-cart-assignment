@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../../static/images/logo.png'
-
+import cartLogo from '../../../static/images/cart.svg'
 import classes from './style.m.scss'
 
 const Header = () => {
@@ -39,7 +39,11 @@ const Header = () => {
               </span>
             </nav>
             <div className={classes['header__cart-items-count']}>
-              <i className={`${classes['cart-icon']} fas fa-shopping-cart`}></i>
+              <img
+                src={cartLogo}
+                className={`${classes['cart-icon']}`}
+                alt="Cart Logo"
+              />
               <span className={classes['header__cart-items-count__span']}>
                 0 items
               </span>
