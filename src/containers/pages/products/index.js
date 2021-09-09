@@ -4,6 +4,7 @@ import Button from '../../../components/button'
 import AccordionComp from '../../../components/accordion'
 import Cart from '../../../components/cart'
 import { getProducts } from '../../../actions/async-actions/products-async'
+import { isTablet, isMobile } from '../../../utils'
 
 import classes from './style.m.scss'
 
@@ -20,23 +21,16 @@ const ProductsPage = () => {
     setCategoryId(categories?.length && categories[0].id)
   }, [categories])
 
-  const mediaTabletQuery = window.matchMedia(
-    '(min-width: 481px) and (max-width: 768px)'
-  )
-  const mediaMobileQuery = window.matchMedia('(max-width: 480px)')
-
   const openCartModal = () => {
-    document.body.style = 'overflow: hidden'
     setAddToCart(true)
   }
 
   const closeCartModal = () => {
-    document.body.style = 'overflow: unset'
     setAddToCart(false)
   }
 
   const renderProductsInfo = (item) => {
-    return mediaTabletQuery.matches ? (
+    return isTablet() ? (
       <>
         <div className={classes['main__section-right__product-info']}>
           <div
@@ -56,11 +50,11 @@ const ProductsPage = () => {
           <Button
             btnText={`Buy Now @ Rs.${item.price}`}
             buttonStyle={{ width: '100%', marginTop: '10px' }}
-            handleClick={openCartModal}
+            handleClick={() => {}}
           />
         </div>
       </>
-    ) : mediaMobileQuery.matches ? (
+    ) : isMobile() ? (
       <>
         <div className={classes['main__section-right__product-info']}>
           <div
@@ -85,7 +79,7 @@ const ProductsPage = () => {
                   padding: '11px',
                   fontSize: '11px',
                 }}
-                handleClick={openCartModal}
+                handleClick={() => {}}
               />
             </div>
           </div>
@@ -150,7 +144,7 @@ const ProductsPage = () => {
         : []}
     </section>
   )
-  const renderProductSection = mediaMobileQuery.matches ? (
+  const renderProductSection = isMobile() ? (
     <AccordionComp
       data={categories}
       renderProducts={renderProducts}
@@ -166,6 +160,7 @@ const ProductsPage = () => {
       {renderProducts}
     </>
   )
+
   return <main className={classes['main']}>{renderProductSection}</main>
 }
 

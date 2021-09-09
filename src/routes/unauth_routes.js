@@ -4,9 +4,9 @@ import { Route, Switch } from 'react-router-dom'
 import Register from '../containers/register'
 import HomePage from '../containers/pages/home'
 import ProductsPage from '../containers/pages/products'
-
+import Cart from '../components/cart'
 import { getCategories } from '../actions/async-actions/home-async'
-
+import { isMobile, isTablet } from '../utils'
 import {
   registerConfig,
   loginConfig,
@@ -30,6 +30,10 @@ const unauthenticatedRoutes = () => {
       </Route>
       <Route path="/products">
         <ProductsPage />
+      </Route>
+
+      <Route path="/cart">
+        <Cart />
       </Route>
     </Switch>
   )

@@ -79,11 +79,19 @@
 
 @media screen and (max-width: 768px) {
   .header {
+    padding: 5px 0;
     .header__sub-div {
       margin-left: 0;
       margin-right: 0;
       .header__section-left {
         gap: 60px;
+      }
+      .header__section-right {
+        .header__section-right__content {
+          .header__nav-right {
+            right: 6px;
+          }
+        }
       }
     }
   }
@@ -108,7 +116,6 @@
           height: 100%;
           width: 100px;
           bottom: 5px;
-          right: -5px;
         }
       }
     }
