@@ -1,15 +1,26 @@
-.section {
+%commonProps {
   flex: 1;
   background-color: #fff;
-  box-shadow: 0 -5px 3px -3px #c3c3c3;
   display: flex;
   justify-content: center;
+}
+
+.section {
+  @extend %commonProps;
+  box-shadow: 0 -5px 3px -3px #c3c3c3;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
   .section__content-div {
     font-size: 13px;
   }
+}
+
+.section-empty {
+  @extend %commonProps;
+  align-items: flex-end;
+  padding-bottom: 15px;
 }
 
 .cart-amount {
@@ -29,17 +40,18 @@
 }
 
 @media screen and (max-width: 768px) {
-  .section {
+  %commonProps {
     position: fixed;
     bottom: 0;
-    padding: 10px;
     width: 100%;
     flex: none;
   }
-}
-
-@media screen and (max-width: 480px) {
   .section {
+    @extend %commonProps;
     padding: 12px 0;
+    gap: 8px;
+  }
+  .section-empty {
+    padding-top: 15px;
   }
 }

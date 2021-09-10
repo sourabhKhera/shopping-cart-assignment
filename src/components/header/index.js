@@ -1,10 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import logo from '../../../static/images/logo.png'
 import cartLogo from '../../../static/images/cart.svg'
 import classes from './style.m.scss'
 
 const Header = () => {
+  const cartItems = useSelector((state) => state.cartReducer.cartItems)
+  const renderItemCount =
+    cartItems > 1 || cartItems === 0
+      ? `${cartItems} items`
+      : `${cartItems} item`
   return (
     <div className={classes['header']}>
       <div className={classes['header__sub-div']}>
@@ -45,7 +51,7 @@ const Header = () => {
                 alt="Cart Logo"
               />
               <span className={classes['header__cart-items-count__span']}>
-                0 items
+                {renderItemCount}
               </span>
             </div>
           </div>

@@ -1,10 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import lowestPrice from '../../../../static/images/lowest-price.png'
 
 import classes from './style.m.scss'
 
 const CartItem = () => {
-  return (
+  const cartItems = useSelector((state) => state.cartReducer.cartItems)
+  return cartItems != 0 ? (
     <section className={classes['section']}>
       <div className={classes['section__div-elem1']}>
         <img
@@ -55,6 +57,15 @@ const CartItem = () => {
         <div className={classes['section__div-elem2__content-div']}>
           You won't find it cheaper anywhere
         </div>
+      </div>
+    </section>
+  ) : (
+    <section className={classes['section-empty']}>
+      <div className={classes['section-empty__div-elem1']}>
+        No items in your cart
+      </div>
+      <div className={classes['section-empty__div-elem2']}>
+        Your favourite items are just a click away
       </div>
     </section>
   )
